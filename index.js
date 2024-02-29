@@ -1,7 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import Product from './models/product.model.js';
+import productRoute from './routes/product.route.js';
+
 const app = express();
 const port = 3000;
 // This is use for pass json data into express
@@ -21,7 +22,11 @@ app.get('/', (req, res) => {
   res.send('Hello from Node API ! ');
 });
 
+// Router
+app.use('/api/products', productRoute);
+
 //  Add data to the database
+/*
 app.post('/api/products', async (req, res) => {
   try {
     // console.log(req.body);
@@ -33,10 +38,12 @@ app.post('/api/products', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+*/
 
 // Update a product in the database using id
 // We can use put or patch for update data in the database
-app.put('/api/product/:id', async (req, res) => {
+/*
+app.put('/api/products/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndUpdate(id, req.body);
@@ -51,8 +58,11 @@ app.put('/api/product/:id', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+*/
 
 // Get ALL the data from database
+/*
+app.use('/api/products',)
 app.get('/api/products', async (req, res) => {
   try {
     const products = await Product.find({});
@@ -61,9 +71,11 @@ app.get('/api/products', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+*/
 
 // Get single product by id from database
-app.get('/api/product/:id', async (req, res) => {
+/*
+app.get('/api/products/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const product = await Product.findById(id);
@@ -72,10 +84,11 @@ app.get('/api/product/:id', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+*/
 
 // delete a product form database using id
-
-app.delete('/api/product/:id', async (req, res) => {
+/*
+app.delete('/api/products/:id', async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -90,6 +103,8 @@ app.delete('/api/product/:id', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+*/
+
 // server listening at port 3000
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
